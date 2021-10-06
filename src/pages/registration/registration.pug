@@ -1,0 +1,35 @@
+include ../../components/button/button.pug
+include ../../components/textfield/textfield.pug
+
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Регистрация
+    body
+        script(src="registration.js") 
+        .content
+            form(action='#' method='method').registration-card.elevation.bordered 
+                .registration-card__title.text-title.mb-10 Регистрация
+                .registration-card__input.mb-4
+                    +textfield('Почта','Почта','email')(type='email')
+                .registration-card__input.mb-4
+                    +textfield('Логин','Логин','login')(type='text')
+                .registration-card__input.mb-4
+                    +textfield('Имя','Имя','first_name')(type='text')
+                .registration-card__input.mb-4
+                    +textfield('Фамилия','Фамилия','second_name')(type='text')
+                .registration-card__input.mb-4
+                    +textfield('Телефон','+7(ХХХ)ХХХ-ХХ-ХХ','phone')(type='text')
+                .registration-card__input.mb-4
+                    +textfield('Пароль','Пароль','password')(type='password')
+                .registration-card__input.mb-4
+                    +textfield('Повторите пароль','Повторите пароль','repeat_password')(type='password')
+                .registration-card__auth-btn.mb-4
+                    +button('Зарегистрироваться')(type='submit')
+                a.registration-card__no-account.link(href="../login/login.pug") Вход
+
+    
+    
+    

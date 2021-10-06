@@ -1,0 +1,1 @@
+import './change-password.scss'

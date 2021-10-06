@@ -1,0 +1,33 @@
+$colors: (
+    "primary": #48BBC8,
+    "info": #488BC8,
+    "error": #FF6162,
+    "warning": #F2994A,
+    "icon": #666666,
+    "disabled": #D9D9D9,
+    "success": #4EC09E,
+    "secondary": #F3F8FD,
+    "text": #000000,
+    "darkenSecondary": #C7D8EC
+);
+
+:root {
+    --color-info: #488BC8;
+    --color-primary: #48BBC8;
+    --color-error: #FF6162;
+    --color-warning: #F2994A;
+    --color-icon: #666666;
+    --color-disabled: #D9D9D9;
+    --color-success: #4EC09E;
+    --color-secondary: #F3F8FD;
+    --color-text: #000000;
+    --color-darkenSecondary: #C7D8EC
+}
+
+.color {
+    @each $name, $hash in $colors {
+        &-#{$name} {
+            color: $hash;
+        }
+    }
+}
