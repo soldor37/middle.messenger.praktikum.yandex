@@ -1,5 +1,9 @@
 # Pull Request: https://github.com/soldor37/middle.messenger.praktikum.yandex/pull/1
 
+##figma https://www.figma.com/file/FeSt31cHDqiJRiYR0seHMO/simple-chat?node-id=0%3A1
+
+##netlify https://condescending-morse-91a8e1.netlify.app/
+
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. Название pull request может быть любое.
