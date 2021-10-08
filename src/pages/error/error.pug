@@ -1,13 +1,11 @@
+extends ../../layout/page-template/page-template.pug
 
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title 5**
-    body 
-        script(src="./error.js") 
-        .error 
-            img.error__icon(src="../../assets/icons/close-octagon.svg")
-            .error__text Произошла ошибка
-            a.link(href="../chat-list/chat-list.pug") Назад к чатам
+block variables 
+    - var title = '5**'
+block scripts 
+    script(src="error.js")
+block content 
+    .error 
+        img.error__icon(src="../../assets/icons/close-octagon.svg")
+        .error__text Произошла ошибка
+        a.link(href="../chat-list/chat-list.pug") Назад к чатам
