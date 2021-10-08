@@ -1,14 +1,25 @@
 .custom-btn {
-    background: #48bbc8;
+    background: var(--color-primary);
     border-radius: 8px;
     width: 100%;
     max-width: 280px;
     height: 36px;
     border: none;
-    outline: none;
     cursor: pointer;
     color: white;
-    &:hover{
+
+    &:hover {
         box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    }
+
+    &:active {
+        color: #fff;
+        background-color: var(--color-darkenPrimary);
+        border-color: var(--color-darkenPrimary);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px var(--color-darkenSecondary);
     }
 }

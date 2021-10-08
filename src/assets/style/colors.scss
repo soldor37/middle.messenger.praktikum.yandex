@@ -1,5 +1,6 @@
 $colors: (
     "primary": #48BBC8,
+    "darkenPrimary": #369ba7,
     "info": #488BC8,
     "error": #FF6162,
     "warning": #F2994A,
@@ -14,6 +15,7 @@ $colors: (
 :root {
     --color-info: #488BC8;
     --color-primary: #48BBC8;
+    --color-darkenPrimary: #369ba7;
     --color-error: #FF6162;
     --color-warning: #F2994A;
     --color-icon: #666666;

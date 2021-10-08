@@ -3,12 +3,14 @@
 body{
     background: #F3F8FD;
 }
+
 .content{
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+
     .registration-card{
         background: #FFFFFF;
         margin-bottom: 0;
@@ -16,9 +18,11 @@ body{
         display: flex;
         flex-direction: column;
         align-items: center;
+
         &__auth-btn{
             width: 280px;
         }
+        
         &__input{
             width: 100%;
         }

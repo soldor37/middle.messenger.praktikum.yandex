@@ -4,34 +4,41 @@ body{
     background: var(--color-darkenSecondary);
     height: 100vh;
 }
+
 .content{
     width: 100%;
     height: 100%;
     display: flex;
+
     .chat-list{
         background: var(--color-secondary);
         min-width: 310px;
         width: 310px;
         padding: 10px;
     }
+
     .selected-chat{
         padding: 10px 20px;
         width: 100%;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
+
         &__header{
             border-bottom: 1px solid white; 
             padding: 0 0 10px 0;
+
             .user{
                 display: flex;
                 align-items: center;
+
                 &__photo{
                     width: 34px;
                     height: 34px;
                     border-radius: 50%;
                     background: var(--color-disabled);
                 }
+
                 &__name{
                     font-weight: bold;
                     font-size: 13px;
@@ -39,9 +46,11 @@ body{
             }
             
         }
+        
         &__chat-area{
             height: 100%;
         }
+        
         &__footer{
             border-top: 1px solid white;
         }

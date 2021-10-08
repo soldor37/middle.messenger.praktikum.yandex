@@ -6,13 +6,16 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+
     &__icon{
         width: 130px;
     }
+
     &__text{
         font-size: 34px;
 
     }
+    
     .link{
         font-size: 24px;
         font-weight: bold;
