@@ -1,0 +1,50 @@
+.chatListItem{
+    display: flex;
+    width: 100%;
+    height: 72px;
+    border-top: 1px solid var(--color-disabled);
+    border-bottom: 1px solid var(--color-disabled);
+    align-items: center;
+    padding: 12px 0;
+    box-sizing: border-box;
+    &:hover{
+        background: var(--color-darkenSecondary);
+    }
+    &__photo{
+        height: 46px;
+        width: 46px;
+        min-width: 46px;
+        border-radius: 50%;
+        background: var(--color-icon);
+    }
+    &__content{
+        width: 100%;
+        padding-left: 10px;
+        height: 100%;
+        .name{
+            font-weight: bold;
+            font-size: 13px;
+            
+        }
+        .lastMessage{
+            font-size: 12px;
+        }
+    }
+    &__info{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .time{
+            font-size: 8px;
+        }
+        .messagesCount{
+            text-align: center;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--color-warning);
+        }
+    }
+}

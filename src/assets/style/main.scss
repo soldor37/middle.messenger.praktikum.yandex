@@ -1,0 +1,59 @@
+@import './normalize.scss';
+@import './colors.scss';
+// ---------- components
+@import '../../components/button/button.scss';
+@import '../../components/textfield/textfield.scss';
+// -------------
+body{
+    font-family: 'Source sans pro', sans-serif;
+}
+
+.mb-4{
+    margin-bottom: 16px;
+}
+
+.mb-2{
+    margin-bottom: 8px;
+}
+
+.mb-10{
+    margin-bottom: 40px;
+}
+
+.mb-16{
+    margin-bottom: 64px;
+}
+
+.mr-2{
+    margin-right: 8px;
+}
+
+.mr-4{
+    margin-right: 16px;
+}
+
+.text-title{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.text-caption{
+    font-size: .75rem;
+    line-height: 1.25rem;
+    color: var(--color-icon); 
+}
+
+.elevation{
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+}
+
+.bordered{
+    border-radius: 16px;
+}
+
+.link{
+    color: var(--color-info);
+    cursor: pointer;
+}

@@ -1,0 +1,5 @@
+mixin textfield(label, placeholder, name)
+    .textfield
+        label.textfield__label.text-caption(for=name)
+            |#{label}
+        input.textfield__input(type=attributes.type ? attributes.type : 'text' name=name placeholder=placeholder value!=attributes.value)

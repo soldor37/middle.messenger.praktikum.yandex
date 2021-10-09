@@ -1,0 +1,11 @@
+extends ../../layout/page-template/page-template.pug
+
+block variables 
+    - var title = '404'
+block scripts 
+    script(src="not-found.js")
+block content 
+    .not-found 
+        img.not-found__icon(src="../../assets/icons/close-octagon.svg")
+        .not-found__text Такой страницы не существует
+        a.link(href="../chat-list/chat-list.pug") Назад к чатам
