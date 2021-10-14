@@ -1,0 +1,10 @@
+{
+    "extends": "airbnb",
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint", "html"],
+    "ignorePatterns": ["*.html"],
+    "rules": {
+      "max-len": [2, 100],
+      "@typescript-eslint/no-unused-vars": 2
+    }
+  }
