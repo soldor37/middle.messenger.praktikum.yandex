@@ -1,23 +1,26 @@
-class EventBus {
+export default class EventBus {
+    listeners: {
+      [k: string]: Function[]
+    }
     constructor() {
       this.listeners = {};
     }
   
-    on(event, callback) {
+    on(event: string, callback: Function) {
       if(!this.listeners[event]){
         this.listeners[event] = []
       }
       this.listeners[event].push(callback)
     }
   
-    off(event, callback) {
+    off(event: string, callback: Function) {
       if(!this.listeners[event]){
         throw new Error(`Нет события: ${event}`)
       }
       this.listeners[event] = this.listeners[event].filter((listener) => listener !== callback)
     }
   
-    emit(event, ...args) {
+    emit(event: string, ...args: any) {
       if(!this.listeners[event]){
         throw new Error(`Нет события: ${event}`)
       }
@@ -25,7 +28,6 @@ class EventBus {
     }
   }
 
-export default new EventBus();
 //   const eventBus = new EventBus();
    
 //   eventBus.on('common:event-1', handlerEvent1);
