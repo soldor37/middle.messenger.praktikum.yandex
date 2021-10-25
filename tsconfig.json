@@ -2,12 +2,19 @@
     "compilerOptions": {
     "outDir": "dist",
     "target": "es2016",
-    "declaration": false,
+    "baseUrl": ".",
+    "paths": {
+      "~": ["./src/*"]
+    },
+    "declaration": true,
     "module": "commonjs",
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-   }
+    "noUnusedParameters": true,    
+   },
+   "esModuleInterop": true,
+   "allowSyntheticDefaultImports": true,
+   "include": ["src/**/*", "shims.d.ts"]
 } 
