@@ -1,11 +1,14 @@
 import { TEvents } from '../enitities/Event';
 import { TProps } from '../enitities/Prop';
 import EventBus from './EventBus'
+import { stringify, v4 as makeUUID } from 'uuid'
 
 export default class Block {
 	private _meta: null | { tagName: string; props: TProps } = null
 
 	private _element: null | HTMLElement = null;
+
+	private _id: string = '';
 
 	props: TProps = {}
 
@@ -27,13 +30,16 @@ export default class Block {
 			tagName,
 			props
 		};
+		this._id = makeUUID();
 
-		this.props = this._makePropsProxy(props);
+		this.props = this._makePropsProxy({ ...props, __id: this._id });
 
 		this.eventBus = () => eventBus;
 
 		this._registerEvents(eventBus);
 		eventBus.emit(Block.EVENTS.INIT);
+
+
 	}
 
 	private _registerEvents(eventBus: EventBus) {
@@ -88,13 +94,41 @@ export default class Block {
 		return this._element;
 	}
 
+	private _renderBlockWithComponents(block: string) {
+		const fragment = document.createElement('template');
+		fragment.innerHTML = block;
+		console.log(fragment.innerHTML)
+		Object.values(this.props)
+			.reduce((blockProps, value) => {
+				if (Array.isArray(value) && value.every((v) => v instanceof Block)) {
+					return blockProps.concat(value);
+				}
+				if (value instanceof Block) {
+
+					blockProps.push(value);
+				}
+				return blockProps;
+			}, [])
+			.forEach((value: Block) => {
+				const el = fragment.content.querySelector(`[data-id="${value._id}"]`);
+
+				if (el && value._element) {
+					el.replaceWith(value._element);
+				}
+			});
+		return fragment.content;
+	}
+
 	private _render() {
 		const block = this.render();
-		
+
 		this._removeEvents()
 
 		if (this._element && block) {
-			this._element.innerHTML = block;
+			// const blockWithComponents: DocumentFragment = this._renderBlockWithComponents(block)
+			// this._element.innerHTML = '';
+			// this._element.appendChild(blockWithComponents)
+			this._element.innerHTML = block
 		}
 
 		this._addEvents();
@@ -148,7 +182,9 @@ export default class Block {
 
 	private _createDocumentElement(tagName: string) {
 		//TODO: Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-		return document.createElement(tagName);
+		const element = document.createElement(tagName);
+		element.setAttribute('data-id', this._id);
+		return element
 	}
 
 	show() {

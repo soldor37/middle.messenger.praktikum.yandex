@@ -34,7 +34,7 @@ const inputLogin = new Textfield({
             console.log('blur')
         }
     },
-}).render()
+})
 
 const inputPassword = new Textfield({
     name: 'Пароль',
@@ -49,11 +49,11 @@ const inputPassword = new Textfield({
             console.log('blur')
         }
     },
-}).render()
+})
 
 const loginPage = new LoginPage({
-    inputLogin: inputLogin,
-    inputPassword: inputPassword,
+    inputLogin: inputLogin.render(),
+    inputPassword: inputPassword.render(),
     events: {
         submit: (e: Event) => {
             e.preventDefault();
