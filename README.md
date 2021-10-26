@@ -1,4 +1,4 @@
-# Pull Request: https://github.com/soldor37/middle.messenger.praktikum.yandex/pull/2
+# Pull Request: https://github.com/soldor37/middle.messenger.praktikum.yandex/pull/3
 
 ##figma https://www.figma.com/file/FeSt31cHDqiJRiYR0seHMO/simple-chat?node-id=0%3A1
 
