@@ -68,10 +68,3 @@ const loginPage = new LoginPage({
 
 // app — это class дива в корне DOM
 render(".app", loginPage);
-
-  // Через секунду контент изменится сам, достаточно обновить пропсы
-//   setTimeout(() => {
-//     index.setProps({
-//       text: 'Click me, please',
-//     });
-//   }, 1000);

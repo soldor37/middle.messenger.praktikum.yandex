@@ -1,7 +1,7 @@
 import { TEvents } from '../enitities/Event';
 import { TProps } from '../enitities/Prop';
 import EventBus from './EventBus'
-import { stringify, v4 as makeUUID } from 'uuid'
+import { v4 as makeUUID } from 'uuid'
 
 export default class Block {
 	private _meta: null | { tagName: string; props: TProps } = null
@@ -97,9 +97,10 @@ export default class Block {
 	private _renderBlockWithComponents(block: string) {
 		const fragment = document.createElement('template');
 		fragment.innerHTML = block;
-		console.log(fragment.innerHTML)
+
 		Object.values(this.props)
 			.reduce((blockProps, value) => {
+				// console.log(value)
 				if (Array.isArray(value) && value.every((v) => v instanceof Block)) {
 					return blockProps.concat(value);
 				}
@@ -111,7 +112,7 @@ export default class Block {
 			}, [])
 			.forEach((value: Block) => {
 				const el = fragment.content.querySelector(`[data-id="${value._id}"]`);
-
+				console.log(fragment.content.lastChild)
 				if (el && value._element) {
 					el.replaceWith(value._element);
 				}
@@ -121,14 +122,14 @@ export default class Block {
 
 	private _render() {
 		const block = this.render();
-
+		console.log(block)
 		this._removeEvents()
 
-		if (this._element && block) {
-			// const blockWithComponents: DocumentFragment = this._renderBlockWithComponents(block)
-			// this._element.innerHTML = '';
-			// this._element.appendChild(blockWithComponents)
-			this._element.innerHTML = block
+		if (this._element && block) { 
+			// this._element.innerHTML = block
+			const blockWithComponents: DocumentFragment = this._renderBlockWithComponents(block)
+			this._element.innerHTML = '';
+			this._element.appendChild(blockWithComponents)
 		}
 
 		this._addEvents();

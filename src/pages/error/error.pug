@@ -1,11 +1,5 @@
-extends ../../layout/page-template/page-template.pug
-
-block variables 
-    - var title = '5**'
-block scripts 
-    script(src="error.js")
-block content 
-    .error 
-        img.error__icon(src="../../assets/icons/close-octagon.svg")
-        .error__text Произошла ошибка
-        a.link(href="../chat-list/chat-list.pug") Назад к чатам
+.error 
+    //- TODO: картинка не грузится, вынести
+    img.error__icon(src="../../assets/icons/close-octagon.svg")
+    .error__text Произошла ошибка
+    a.link(href="../chat-list/chat-list.pug") Назад к чатам
