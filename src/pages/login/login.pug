@@ -1,14 +1,13 @@
 include ../../components/button/button.pug
-include ../../components/textfield/textfield.pug
 
 .content
     form().login-window.elevation.bordered 
         .login-window__title.text-title.mb-10 Вход
         .login-window__input.mb-4
-            #{inputLogin}
+            | !{inputLogin}
             //- +textfield('Логин','Логин','login')(type='email')
         .login-window__input.mb-4
-            #{inputPassword}
+            | !{inputPassword}
             //- +textfield('Пароль','Пароль','password')(type='password')
         .login-window__auth-btn.mb-4
             +button('Войти')(type='submit')

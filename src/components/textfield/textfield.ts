@@ -5,7 +5,7 @@ import './textfield.scss'
 
 export default class Textfield extends Block {
     constructor(props: TProps) {
-        super('textfield', props)
+        super('div', props)
     }
     render() {
         return compileTextfield({ ...this.props })

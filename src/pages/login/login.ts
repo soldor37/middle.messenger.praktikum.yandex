@@ -21,13 +21,39 @@ function render(query: string, block: LoginPage) {
     return root;
 }
 
+const inputLogin = new Textfield({
+    name: 'Логин',
+    type: 'email',
+    label: 'Логин',
+    placeholder: 'Логин',
+    events: {
+        onfocus: (e: Event) => {
+            console.log('focus')
+        },
+        onblur: (e: Event) => {
+            console.log('blur')
+        }
+    },
+}).render()
+
+const inputPassword = new Textfield({
+    name: 'Пароль',
+    type: 'password',
+    label: 'Пароль',
+    placeholder: 'Пароль',
+    events: {
+        onfocus: (e: Event) => {
+            console.log('focus')
+        },
+        onblur: (e: Event) => {
+            console.log('blur')
+        }
+    },
+}).render()
+
 const loginPage = new LoginPage({
-    inputLogin: new Textfield({
-        name: 'Логин',
-        type: 'email',
-        label: 'Логин',
-        placeholder: 'Логин'
-    }).getContent(),
+    inputLogin: inputLogin,
+    inputPassword: inputPassword,
     events: {
         submit: (e: Event) => {
             e.preventDefault();
