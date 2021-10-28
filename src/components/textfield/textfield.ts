@@ -4,8 +4,8 @@ import compileTextfield from './textfield.pug';
 import './textfield.scss'
 
 export default class Textfield extends Block {
-    constructor(props: TProps) {
-        super('div', props)
+    constructor(props: TProps, name: string) {
+        super('div', props, name)
     }
     render() {
         return compileTextfield({ ...this.props })

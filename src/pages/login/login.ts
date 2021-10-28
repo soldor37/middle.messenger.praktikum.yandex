@@ -5,8 +5,8 @@ import './login.scss'
 import Textfield from '../../components/textfield/textfield';
 
 class LoginPage extends Block {
-    constructor(props: TProps) {
-        super('login-page', props)
+    constructor(props: TProps, childComponents: Block[]) {
+        super('login-page', props, 'login-page', childComponents)
     }
     render() {
         return login({ ...this.props })
@@ -27,14 +27,14 @@ const inputLogin = new Textfield({
     label: 'Логин',
     placeholder: 'Логин',
     events: {
-        onfocus: (e: Event) => {
+        focusin: (e: Event) => {
             console.log('focus')
         },
-        onblur: (e: Event) => {
+        focusout: (e: Event) => {
             console.log('blur')
         }
     },
-})
+}, 'inputLogin')
 
 const inputPassword = new Textfield({
     name: 'Пароль',
@@ -42,18 +42,16 @@ const inputPassword = new Textfield({
     label: 'Пароль',
     placeholder: 'Пароль',
     events: {
-        onfocus: (e: Event) => {
+        focusin: (e: Event) => {
             console.log('focus')
         },
-        onblur: (e: Event) => {
+        focusout: (e: Event) => {
             console.log('blur')
-        }
+        },
     },
-})
+}, 'inputPassword')
 
 const loginPage = new LoginPage({
-    inputLogin: inputLogin.render(),
-    inputPassword: inputPassword.render(),
     events: {
         submit: (e: Event) => {
             e.preventDefault();
@@ -64,7 +62,7 @@ const loginPage = new LoginPage({
             });
         },
     },
-});
+}, [inputLogin, inputPassword]);
 
 // app — это class дива в корне DOM
 render(".app", loginPage);

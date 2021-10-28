@@ -4,11 +4,9 @@ include ../../components/button/button.pug
     form().login-window.elevation.bordered 
         .login-window__title.text-title.mb-10 Вход
         .login-window__input.mb-4
-            | !{inputLogin}
-            //- +textfield('Логин','Логин','login')(type='email')
+            div(data-component="inputLogin")
         .login-window__input.mb-4
-            | !{inputPassword}
-            //- +textfield('Пароль','Пароль','password')(type='password')
+            div(data-component="inputPassword")
         .login-window__auth-btn.mb-4
             +button('Войти')(type='submit')
         a.login-window__no-account.link(href="../registration/registration.pug") Нет аккаунта?
