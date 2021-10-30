@@ -3,6 +3,9 @@ import Block from '../../classes/Block';
 import login from './login.pug';
 import './login.scss'
 import Textfield from '../../components/textfield/textfield';
+import renderBlock from '../../utils/renderBlock';
+import { validatePassword, validateLogin } from '../../utils/validation';
+import checkValidation from '../../utils/checkValidation';
 
 class LoginPage extends Block {
     constructor(props: TProps, childComponents: Block[]) {
@@ -12,14 +15,14 @@ class LoginPage extends Block {
         return login({ ...this.props })
     }
 }
-function render(query: string, block: LoginPage) {
-    const root = document.querySelector(query);
-    const content = block.getContent()
-    if (content) {
-        root?.appendChild(content);
-    }
-    return root;
-}
+// function render(query: string, block: LoginPage) {
+//     const root = document.querySelector(query);
+//     const content = block.getContent()
+//     if (content) {
+//         root?.appendChild(content);
+//     }
+//     return root;
+// }
 
 const inputLogin = new Textfield({
     name: 'Логин',
@@ -28,10 +31,10 @@ const inputLogin = new Textfield({
     placeholder: 'Логин',
     events: {
         focusin: (e: Event) => {
-            console.log('focus')
+            checkValidation(e, validateLogin)
         },
         focusout: (e: Event) => {
-            console.log('blur')
+            checkValidation(e, validateLogin)
         }
     },
 }, 'inputLogin')
@@ -43,10 +46,10 @@ const inputPassword = new Textfield({
     placeholder: 'Пароль',
     events: {
         focusin: (e: Event) => {
-            console.log('focus')
+            checkValidation(e, validatePassword)
         },
         focusout: (e: Event) => {
-            console.log('blur')
+            checkValidation(e, validatePassword)
         },
     },
 }, 'inputPassword')
@@ -65,4 +68,4 @@ const loginPage = new LoginPage({
 }, [inputLogin, inputPassword]);
 
 // app — это class дива в корне DOM
-render(".app", loginPage);
+renderBlock(".app", loginPage);

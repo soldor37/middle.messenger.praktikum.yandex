@@ -4,7 +4,7 @@ import EventBus from './EventBus'
 import { v4 as makeUUID } from 'uuid'
 
 export default class Block {
-	private _meta: null | { tagName: string; props: TProps; childComponents?: Block[] } = null
+	private _meta: null | { tagName: string; props: TProps; childComponents?: Block[] } = null;
 
 	private _element: null | HTMLElement = null;
 
@@ -12,11 +12,11 @@ export default class Block {
 
 	public name: string = '';
 
-	props: TProps = {}
+	props: TProps = {};
 
-	childComponents: Block[] | undefined = []
+	childComponents: Block[] | undefined = [];
 
-	eventBus: EventBus
+	eventBus: EventBus;
 
 	static EVENTS = {
 		INIT: "init",
@@ -110,7 +110,7 @@ export default class Block {
 			Object.values(this.childComponents)
 				.forEach((block: Block) => {
 					const el = fragment.content.querySelector(`[data-component="${block.name}"]`);
-					
+
 					if (el && block.element) {
 						el.replaceWith(block.element);
 					}
@@ -143,7 +143,7 @@ export default class Block {
 
 	private _addEvents() {
 		const { events = {} } = this.props;
-		
+
 		Object.keys(events).forEach(eventName => {
 			this._element?.addEventListener(eventName, events[eventName]);
 		});
