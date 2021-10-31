@@ -5,6 +5,17 @@
   "engines": {
     "node": ">=14.17.5"
   },
+  "web": "dist/index.html",
+  "targets": {
+    "web": {
+      "engines": {
+        "browsers": [
+          "> 1%",
+          "not dead"
+        ]
+      }
+    }
+  },
   "scripts": {
     "start": "parcel src/index.html --port 3000",
     "build": "parcel build src/index.html --dist-dir dist"
@@ -20,7 +31,9 @@
     "url": "https://github.com/soldor37/simple-chat/issues"
   },
   "homepage": "https://github.com/soldor37/simple-chat#readme",
-  "dependencies": {},
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
     "@parcel/transformer-pug": "^2.0.0",
     "@parcel/transformer-sass": "^2.0.0",
@@ -41,7 +54,6 @@
     "stylelint-config-standard": "^22.0.0",
     "stylelint-scss": "^3.21.0",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.4",
-    "uuid": "^8.3.2"
+    "typescript": "^4.4.4"
   }
 }
