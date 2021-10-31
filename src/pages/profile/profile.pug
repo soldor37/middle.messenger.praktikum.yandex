@@ -7,18 +7,12 @@ include ../../components/button/button.pug
         input(type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;")
     .profile__name.mb-4 Иван
     .profile__info.mb-4 
-        //- +textfield('Почта', '', 'email')(value='pochta@yandex.ru')
-        //- +textfield('Логин', '', 'login')(value='ivanivanov')
-        //- +textfield('Имя', '', 'first_name')(value='Иван')
-        //- +textfield('Фамилия', '', 'second_name')(value='Иванов')
-        //- +textfield('Имя в чате', '', 'display_name')(value='Иван123')
-        //- +textfield('Телефон', '', 'phone')(value='+7 (900) 999 99 99')
-        | !{inputEmail}
-        | !{inputLogin}
-        | !{inputFirstName}
-        | !{inputSecondName}
-        | !{inputDisplayName}
-        | !{inputPhone}
+        div(data-component="inputEmail")
+        div(data-component="inputLogin")
+        div(data-component="inputFirstName")
+        div(data-component="inputSecondName")
+        div(data-component="inputDisplayName")
+        div(data-component="inputPhone")
     .profile__actions 
         a.link.mb-2 Изменить данные
         a.link.mb-2(href="../change-password/change-password.pug") Изменить пароль

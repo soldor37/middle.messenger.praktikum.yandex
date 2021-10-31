@@ -3,53 +3,47 @@ import Block from '../../classes/Block';
 import registration from './registration.pug';
 import './registration.scss'
 import Textfield from '../../components/textfield/textfield';
+import renderBlock from '../../utils/renderBlock';
+import { validatePassword, validateLogin, checkValidation, validateEmail, validateName, validatePhone } from '../../utils/validation';
 
 class RegistrationPage extends Block {
-    constructor(props: TProps) {
-        super('registration-page', props)
+    constructor(props: TProps, childComponents: Block[]) {
+        super('registration-page', props, 'registration-page', childComponents)
     }
     render() {
         return registration({ ...this.props })
     }
 }
-function render(query: string, block: RegistrationPage) {
-    const root = document.querySelector(query);
-    const content = block.getContent()
-    if (content) {
-        root?.appendChild(content);
-    }
-    return root;
-}
 
 const inputLogin = new Textfield({
-    name: 'login',
-    type: 'text',
+    name: 'Логин',
+    type: 'email',
     label: 'Логин',
     placeholder: 'Логин',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateLogin)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validateLogin)
         }
     },
-})
+}, 'inputLogin')
 
 const inputPassword = new Textfield({
-    name: 'password',
+    name: 'Пароль',
     type: 'password',
     label: 'Пароль',
     placeholder: 'Пароль',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validatePassword)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
-        }
+        focusout: (e: Event) => {
+            checkValidation(e, validatePassword)
+        },
     },
-})
+}, 'inputPassword')
 
 const inputEmail = new Textfield({
     name: 'email',
@@ -57,79 +51,83 @@ const inputEmail = new Textfield({
     label: 'Почта',
     placeholder: 'Почта',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateEmail)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
-        }
+        focusout: (e: Event) => {
+            checkValidation(e, validateEmail)
+        },
     },
-})
+}, 'inputEmail')
+
 const inputFirstName = new Textfield({
     name: 'first_name',
     type: 'text',
     label: 'Имя',
     placeholder: 'Имя',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateName)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
-        }
+        focusout: (e: Event) => {
+            checkValidation(e, validateName)
+        },
     },
-})
+}, 'inputFirstName')
+
 const inputSecondName = new Textfield({
     name: 'second_name',
     type: 'text',
     label: 'Фамилия',
     placeholder: 'Фамилия',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateName)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
-        }
+        focusout: (e: Event) => {
+            checkValidation(e, validateName)
+        },
     },
-})
+}, 'inputSecondName')
+
 const inputPhone = new Textfield({
     name: 'phone',
     type: 'text',
     label: 'Телефон',
     placeholder: 'Телефон',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validatePhone)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
-        }
+        focusout: (e: Event) => {
+            checkValidation(e, validatePhone)
+        },
     },
-})
+}, 'inputPhone')
+
 const inputPasswordRepeat = new Textfield({
     name: 'repeat_password',
     type: 'password',
     label: 'Повторите пароль',
     placeholder: 'Повторите пароль',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validatePassword)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
-        }
+        focusout: (e: Event) => {
+            checkValidation(e, validatePassword)
+        },
     },
-})
+}, 'inputPasswordRepeat')
 
 const registrationPage = new RegistrationPage({
-    inputLogin: inputLogin.render(),
-    inputPassword: inputPassword.render(),
-    inputEmail: inputEmail.render(),
-    inputFirstName: inputFirstName.render(),
-    inputSecondName: inputSecondName.render(),
-    inputPhone: inputPhone.render(),
-    inputPasswordRepeat: inputPasswordRepeat.render(),
+    inputLogin: inputLogin,
+    inputPassword: inputPassword,
+    inputEmail: inputEmail,
+    inputFirstName: inputFirstName,
+    inputSecondName: inputSecondName,
+    inputPhone: inputPhone,
+    inputPasswordRepeat: inputPasswordRepeat,
     events: {
         submit: (e: Event) => {
             e.preventDefault();
@@ -140,7 +138,9 @@ const registrationPage = new RegistrationPage({
             });
         },
     },
-});
+}, [inputLogin, inputPassword,
+    inputEmail, inputFirstName,
+    inputPasswordRepeat, inputPhone, inputSecondName]);
 
 // app — это class дива в корне DOM
-render(".app", registrationPage);
+renderBlock(".app", registrationPage);

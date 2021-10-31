@@ -3,23 +3,18 @@ import { TProps } from '../../enitities/Prop';
 import Block from '../../classes/Block';
 import changePassword from './change-password.pug';
 import Textfield from '../../components/textfield/textfield';
+import renderBlock from '../../utils/renderBlock';
+import { validatePassword, checkValidation } from '../../utils/validation';
 
 class ChangePasswordPage extends Block {
-    constructor(props: TProps) {
-        super('changePassword-page', props)
+    constructor(props: TProps, childComponents: Block[]) {
+        super('changePassword-page', props, 'changePassword-page', childComponents)
     }
     render() {
         return changePassword({ ...this.props })
     }
 }
-function render(query: string, block: ChangePasswordPage) {
-    const root = document.querySelector(query);
-    const content = block.getContent()
-    if (content) {
-        root?.appendChild(content);
-    }
-    return root;
-}
+
 
 const inputOldPassword = new Textfield({
     name: 'oldPassword',
@@ -27,14 +22,14 @@ const inputOldPassword = new Textfield({
     label: 'Старый пароль',
     placeholder: 'Старый пароль',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validatePassword)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validatePassword)
         }
     },
-})
+}, 'inputOldPassword')
 
 const inputNewPassword = new Textfield({
     name: 'newPassword',
@@ -42,14 +37,14 @@ const inputNewPassword = new Textfield({
     label: 'Новый пароль',
     placeholder: 'Новый пароль',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validatePassword)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validatePassword)
         }
     },
-})
+}, 'inputNewPassword')
 
 const inputNewPasswordRepeat = new Textfield({
     name: 'newPassword_repeat',
@@ -57,19 +52,19 @@ const inputNewPasswordRepeat = new Textfield({
     label: 'Повторите новйы пароль',
     placeholder: 'Повторите новйы пароль',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validatePassword)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validatePassword)
         }
     },
-})
+}, 'inputNewPasswordRepeat')
 
 const changePasswordPage = new ChangePasswordPage({
-    inputOldPassword: inputOldPassword.render(),
-    inputNewPassword: inputNewPassword.render(),
-    inputNewPasswordRepeat: inputNewPasswordRepeat.render(),
+    inputOldPassword: inputOldPassword,
+    inputNewPassword: inputNewPassword,
+    inputNewPasswordRepeat: inputNewPasswordRepeat,
     events: {
         submit: (e: Event) => {
             e.preventDefault();
@@ -80,7 +75,7 @@ const changePasswordPage = new ChangePasswordPage({
             });
         },
     },
-});
+}, [inputNewPassword, inputNewPasswordRepeat, inputOldPassword]);
 
 // app — это class дива в корне DOM
-render(".app", changePasswordPage);
+renderBlock(".app", changePasswordPage);

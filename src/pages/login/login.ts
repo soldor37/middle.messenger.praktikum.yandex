@@ -4,8 +4,7 @@ import login from './login.pug';
 import './login.scss'
 import Textfield from '../../components/textfield/textfield';
 import renderBlock from '../../utils/renderBlock';
-import { validatePassword, validateLogin } from '../../utils/validation';
-import checkValidation from '../../utils/checkValidation';
+import { validatePassword, validateLogin, checkValidation } from '../../utils/validation';
 
 class LoginPage extends Block {
     constructor(props: TProps, childComponents: Block[]) {
@@ -15,14 +14,6 @@ class LoginPage extends Block {
         return login({ ...this.props })
     }
 }
-// function render(query: string, block: LoginPage) {
-//     const root = document.querySelector(query);
-//     const content = block.getContent()
-//     if (content) {
-//         root?.appendChild(content);
-//     }
-//     return root;
-// }
 
 const inputLogin = new Textfield({
     name: 'Логин',

@@ -3,23 +3,18 @@ import { TProps } from '../../enitities/Prop';
 import Block from '../../classes/Block';
 import profile from './profile.pug';
 import Textfield from '../../components/textfield/textfield';
+import renderBlock from '../../utils/renderBlock';
+import {  validateLogin, checkValidation, validateEmail, validateName, validatePhone } from '../../utils/validation';
 
 class ProfilePage extends Block {
-    constructor(props: TProps) {
-        super('profile-page', props)
+    constructor(props: TProps, childComponents: Block[]) {
+        super('profile-page', props, 'profile-page', childComponents)
     }
     render() {
         return profile({ ...this.props })
     }
 }
-function render(query: string, block: ProfilePage) {
-    const root = document.querySelector(query);
-    const content = block.getContent()
-    if (content) {
-        root?.appendChild(content);
-    }
-    return root;
-}
+
 
 const inputLogin = new Textfield({
     name: 'Логин',
@@ -27,14 +22,14 @@ const inputLogin = new Textfield({
     label: 'Логин',
     placeholder: 'Логин',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateLogin)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validateLogin)
         }
     },
-})
+}, 'inputLogin')
 
 const inputEmail = new Textfield({
     name: 'Почта',
@@ -42,14 +37,14 @@ const inputEmail = new Textfield({
     label: 'Почта',
     placeholder: 'Почта',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateEmail)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validateEmail)
         }
     },
-})
+}, 'inputEmail')
 
 const inputDisplayName = new Textfield({
     name: 'Имя в чате',
@@ -57,14 +52,14 @@ const inputDisplayName = new Textfield({
     label: 'Имя в чате',
     placeholder: 'Имя в чате',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateName)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validateName)
         }
     },
-})
+}, 'inputDisplayName')
 
 const inputFirstName = new Textfield({
     name: 'Имя',
@@ -72,14 +67,14 @@ const inputFirstName = new Textfield({
     label: 'Имя',
     placeholder: 'Имя',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateName)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validateName)
         }
     },
-})
+}, 'inputFirstName')
 
 const inputSecondName = new Textfield({
     name: 'Фамилия',
@@ -87,14 +82,14 @@ const inputSecondName = new Textfield({
     label: 'Фамилия',
     placeholder: 'Фамилия',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validateName)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validateName)
         }
     },
-})
+}, 'inputSecondName')
 
 const inputPhone = new Textfield({
     name: 'Телефон',
@@ -102,22 +97,22 @@ const inputPhone = new Textfield({
     label: 'Телефон',
     placeholder: 'Телефон',
     events: {
-        onfocus: (e: Event) => {
-            console.log('focus')
+        focusin: (e: Event) => {
+            checkValidation(e, validatePhone)
         },
-        onblur: (e: Event) => {
-            console.log('blur')
+        focusout: (e: Event) => {
+            checkValidation(e, validatePhone)
         }
     },
-})
+}, 'inputPhone')
 
 const profilePage = new ProfilePage({
-    inputLogin: inputLogin.render(),
-    inputEmail: inputEmail.render(),
-    inputDisplayName: inputDisplayName.render(),
-    inputFirstName: inputFirstName.render(),
-    inputSecondName: inputSecondName.render(),
-    inputPhone: inputPhone.render(),
+    inputLogin: inputLogin,
+    inputEmail: inputEmail,
+    inputDisplayName: inputDisplayName,
+    inputFirstName: inputFirstName,
+    inputSecondName: inputSecondName,
+    inputPhone: inputPhone,
     events: {
         submit: (e: Event) => {
             e.preventDefault();
@@ -128,7 +123,8 @@ const profilePage = new ProfilePage({
             });
         },
     },
-});
+}, [inputDisplayName, inputEmail, inputFirstName,
+    inputLogin, inputPhone, inputSecondName]);
 
 // app — это class дива в корне DOM
-render(".app", profilePage);
+renderBlock(".app", profilePage);

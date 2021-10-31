@@ -32,3 +32,16 @@ export const validatePhone = (value: string) => {
     return result ? '' : ERROR_MESSAGE.PHONE;
 };
 
+export const validateName = (value: string) => {
+    const pattern = /^[А-ЯA-Z][а-яёЁa-z]+$/g;
+    const result = value.match(pattern);
+    return result ? '' : ERROR_MESSAGE.PHONE;
+};
+
+export type TCheckValidationFunc = (event: Event, validFunc: TValidateFunction) => void
+
+export function checkValidation(event: Event, validFunc: TValidateFunction) {
+    const target = event?.target as HTMLInputElement;
+    const test = validFunc(target.value)
+    test ? target.classList.add('invalid') : target.classList.remove('invalid')
+}

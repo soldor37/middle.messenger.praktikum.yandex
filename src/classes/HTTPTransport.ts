@@ -61,7 +61,6 @@ const METHODS = {
       );
     }
   
-    // eslint-disable-next-line class-methods-use-this
     request(url: string, options: {
       method: string,
       data?: { [index: string]: string },

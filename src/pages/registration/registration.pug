@@ -4,25 +4,25 @@ include ../../components/button/button.pug
     form().registration-card.elevation.bordered 
         .registration-card__title.text-title.mb-10 Регистрация
         .registration-card__input.mb-4
-            | !{inputEmail}
+            div(data-component="inputEmail")
             //- +textfield('Почта','Почта','email')(type='email')
         .registration-card__input.mb-4
-            | !{inputLogin}
+            div(data-component="inputLogin")
             //- +textfield('Логин','Логин','login')(type='text')
         .registration-card__input.mb-4
-            | !{inputFirstName}
+            div(data-component="inputFirstName")
             //- +textfield('Имя','Имя','first_name')(type='text')
         .registration-card__input.mb-4
-            | !{inputSecondName}
+            div(data-component="inputSecondName")
             //- +textfield('Фамилия','Фамилия','second_name')(type='text')
         .registration-card__input.mb-4
-            | !{inputPhone}
+            div(data-component="inputPhone")
             //- +textfield('Телефон','+7(ХХХ)ХХХ-ХХ-ХХ','phone')(type='text')
         .registration-card__input.mb-4
-            | !{inputPassword}
+            div(data-component="inputPassword")
             //- +textfield('Пароль','Пароль','password')(type='password')
         .registration-card__input.mb-4
-            | !{inputPasswordRepeat}
+            div(data-component="inputPasswordRepeat")
             //- +textfield('Повторите пароль','Повторите пароль','repeat_password')(type='password')
         .registration-card__auth-btn.mb-4
             +button('Зарегистрироваться')(type='submit')
