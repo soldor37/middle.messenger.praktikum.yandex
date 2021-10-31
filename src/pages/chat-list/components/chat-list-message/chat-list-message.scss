@@ -1,0 +1,25 @@
+.chatListMessage {
+    
+    border-radius: 16px;
+    max-width: 70%;
+    padding: 8px 16px;
+    margin: 20px 0;
+    
+    &.receiver {
+        background: var(--color-secondary);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin-right: auto;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    &.sender {
+        background: var(--color-primary);
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        margin-left: auto;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .time{
+        text-align: right;
+    }
+}

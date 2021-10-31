@@ -1,11 +1,10 @@
-mixin chatListItem(name, photoSrc, lastMessage, lastMessageTime, messagesCount)
-    .chatListItem
-        .chatListItem__photo
-            if !!photoSrc
-                img(src=photoSrc, alt="userAvatar")
-        .chatListItem__content 
-            .name= name
-            .lastMessage= lastMessage
-        .chatListItem__info 
-            .time= lastMessageTime
-            .messagesCount= messagesCount
+.chatListItem
+    .chatListItem__photo
+        if !!photoSrc
+            img(src=photoSrc, alt="userAvatar")
+    .chatListItem__content 
+        .name= name
+        .lastMessage= lastMessage
+    .chatListItem__info 
+        .time= lastMessageTime
+        .messagesCount= messagesCount

@@ -16,7 +16,7 @@ class RegistrationPage extends Block {
 }
 
 const inputLogin = new Textfield({
-    name: 'Логин',
+    name: 'login',
     type: 'email',
     label: 'Логин',
     placeholder: 'Логин',
@@ -31,7 +31,7 @@ const inputLogin = new Textfield({
 }, 'inputLogin')
 
 const inputPassword = new Textfield({
-    name: 'Пароль',
+    name: 'password',
     type: 'password',
     label: 'Пароль',
     placeholder: 'Пароль',
