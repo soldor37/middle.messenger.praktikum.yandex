@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/soldor37/simple-chat#readme",
   "dependencies": {
+    "@parcel/config-default": "^2.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
