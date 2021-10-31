@@ -125,7 +125,6 @@ export default class Block {
 		this._removeEvents()
 
 		if (this._element && block) {
-			// this._element.innerHTML = block
 			const blockWithComponents: DocumentFragment = this._renderBlockWithComponents(block)
 			this._element.innerHTML = '';
 			this._element.appendChild(blockWithComponents)
