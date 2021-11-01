@@ -18,7 +18,7 @@ export default class Block {
 
 	props: TProps = {};
 
-	childComponents: Block[] | undefined = [];
+	childComponents?: Block[] = [];
 
 	eventBus: EventBus;
 

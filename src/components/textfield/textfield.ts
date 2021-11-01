@@ -2,44 +2,39 @@ import { TProps } from "../../enitities/Prop";
 import Block from "../../classes/Block";
 import compileTextfield from "./textfield.pug";
 import "./textfield.scss";
+import { TValidateFunction, checkValidation, checkValidationForEvent } from "../../utils/validation";
+
+export type TTextfieldProps = TProps & {
+	errorMsg?: string;
+	label?: string;
+	name: string;
+	type?: string;
+	placeholder: string;
+	value?: string;
+	validateFunc?: TValidateFunction;
+};
 
 export default class Textfield extends Block {
-	constructor(props: TProps, name: string) {
+	constructor(props: TTextfieldProps, name: string) {
+		props.events = {
+			...props.events,
+			focusin: (e: Event) => {
+				checkValidationForEvent(e, this.props.validateFunc);
+			},
+			focusout: (e: Event) => {
+				checkValidationForEvent(e, this.props.validateFunc);
+			},
+		};
 		super("div", props, name);
 	}
 	render() {
+		
 		return compileTextfield({ ...this.props });
 	}
+	validate(): void {
+		const target = this.getContent()?.getElementsByTagName("input")[0];
+		if (target && this.props.validateFunc) {
+			checkValidation(target, this.props.validateFunc);
+		}
+	}
 }
-// function render(query: string, block: Textfield) {
-//     const root = document.querySelector(query);
-//     const content = block.getContent()
-//     if (content) {
-//         root?.appendChild(content);
-//     }
-//     return root;
-// }
-
-// const textfield = new Textfield({
-//     events: {
-//         onfocus: (e: Event) => {
-//             e.preventDefault();
-//             console.log('focus')
-//         },
-//         onblur: (e: Event)=>{
-//             e.preventDefault()
-//             console.log('blur')
-//         }
-//     },
-// });
-
-// export default textfield
-// app — это class дива в корне DOM
-// render(".app", textfield);
-
-// Через секунду контент изменится сам, достаточно обновить пропсы
-//   setTimeout(() => {
-//     index.setProps({
-//       text: 'Click me, please',
-//     });
-//   }, 1000);

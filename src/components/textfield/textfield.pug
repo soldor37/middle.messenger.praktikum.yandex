@@ -3,3 +3,4 @@
         label.textfield__label.text-caption(for=name)
             |#{label}
     input.textfield__input(type=type ? type : 'text' name=name placeholder=placeholder value!=value)
+    span.textfield__error-message= errorMsg

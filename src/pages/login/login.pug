@@ -3,13 +3,13 @@ include ../../components/button/button.pug
 .content
     form().login-window.elevation.bordered 
         .login-window__title.text-title.mb-10 Вход
-        .login-window__input.mb-4
+        .login-window__input.mb-1
             div(data-component="inputLogin")
         .login-window__input.mb-4
             div(data-component="inputPassword")
         .login-window__auth-btn.mb-4
             +button('Войти')(type='submit')
-        a.login-window__no-account.link(href="../registration/registration.pug") Нет аккаунта?
+        a.login-window__no-account.link(href="../static/registration.html") Нет аккаунта?
 
     
     

@@ -26,14 +26,7 @@ const inputOldPassword = new Textfield(
 		type: "password",
 		label: "Старый пароль",
 		placeholder: "Старый пароль",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-		},
+		validateFunc: validatePassword,
 	},
 	"inputOldPassword"
 );
@@ -44,14 +37,7 @@ const inputNewPassword = new Textfield(
 		type: "password",
 		label: "Новый пароль",
 		placeholder: "Новый пароль",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-		},
+		validateFunc: validatePassword,
 	},
 	"inputNewPassword"
 );
@@ -62,28 +48,21 @@ const inputNewPasswordRepeat = new Textfield(
 		type: "password",
 		label: "Повторите новйы пароль",
 		placeholder: "Повторите новйы пароль",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-		},
+		validateFunc: validatePassword,
 	},
 	"inputNewPasswordRepeat"
 );
 
 const changePasswordPage = new ChangePasswordPage(
 	{
-		inputOldPassword: inputOldPassword,
-		inputNewPassword: inputNewPassword,
-		inputNewPasswordRepeat: inputNewPasswordRepeat,
 		events: {
 			submit: (e: Event) => {
 				e.preventDefault();
 				const target = e.target as HTMLFormElement;
 				const formData = new FormData(target);
+				inputNewPassword.validate()
+				inputNewPasswordRepeat.validate()
+				inputOldPassword.validate()
 				formData.forEach((value, key) => {
 					console.log(`${key}: ${value}`);
 				});

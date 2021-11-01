@@ -11,6 +11,7 @@ import {
 	validateEmail,
 	validateName,
 	validatePhone,
+	checkValidationForEvent,
 } from "../../utils/validation";
 
 class RegistrationPage extends Block {
@@ -28,14 +29,7 @@ const inputLogin = new Textfield(
 		type: "email",
 		label: "Логин",
 		placeholder: "Логин",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validateLogin);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validateLogin);
-			},
-		},
+		validateFunc: validateLogin,
 	},
 	"inputLogin"
 );
@@ -46,14 +40,7 @@ const inputPassword = new Textfield(
 		type: "password",
 		label: "Пароль",
 		placeholder: "Пароль",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-		},
+		validateFunc: validatePassword,
 	},
 	"inputPassword"
 );
@@ -64,14 +51,7 @@ const inputEmail = new Textfield(
 		type: "email",
 		label: "Почта",
 		placeholder: "Почта",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validateEmail);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validateEmail);
-			},
-		},
+		validateFunc: validateEmail,
 	},
 	"inputEmail"
 );
@@ -82,14 +62,7 @@ const inputFirstName = new Textfield(
 		type: "text",
 		label: "Имя",
 		placeholder: "Имя",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validateName);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validateName);
-			},
-		},
+		validateFunc: validateName,
 	},
 	"inputFirstName"
 );
@@ -100,14 +73,7 @@ const inputSecondName = new Textfield(
 		type: "text",
 		label: "Фамилия",
 		placeholder: "Фамилия",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validateName);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validateName);
-			},
-		},
+		validateFunc: validateName,
 	},
 	"inputSecondName"
 );
@@ -118,14 +84,7 @@ const inputPhone = new Textfield(
 		type: "text",
 		label: "Телефон",
 		placeholder: "Телефон",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validatePhone);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validatePhone);
-			},
-		},
+		validateFunc: validatePhone,
 	},
 	"inputPhone"
 );
@@ -136,32 +95,25 @@ const inputPasswordRepeat = new Textfield(
 		type: "password",
 		label: "Повторите пароль",
 		placeholder: "Повторите пароль",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-		},
+		validateFunc: validatePassword,
 	},
 	"inputPasswordRepeat"
 );
 
 const registrationPage = new RegistrationPage(
 	{
-		inputLogin: inputLogin,
-		inputPassword: inputPassword,
-		inputEmail: inputEmail,
-		inputFirstName: inputFirstName,
-		inputSecondName: inputSecondName,
-		inputPhone: inputPhone,
-		inputPasswordRepeat: inputPasswordRepeat,
 		events: {
 			submit: (e: Event) => {
 				e.preventDefault();
 				const target = e.target as HTMLFormElement;
 				const formData = new FormData(target);
+				inputEmail.validate()
+				inputFirstName.validate()
+				inputLogin.validate()
+				inputPassword.validate()
+				inputPasswordRepeat.validate()
+				inputPhone.validate()
+				inputSecondName.validate()
 				formData.forEach((value, key) => {
 					console.log(`${key}: ${value}`);
 				});

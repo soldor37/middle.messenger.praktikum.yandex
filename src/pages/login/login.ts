@@ -8,6 +8,7 @@ import {
 	validatePassword,
 	validateLogin,
 	checkValidation,
+	checkValidationForEvent,
 } from "../../utils/validation";
 
 class LoginPage extends Block {
@@ -25,14 +26,7 @@ const inputLogin = new Textfield(
 		type: "email",
 		label: "Логин",
 		placeholder: "Логин",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validateLogin);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validateLogin);
-			},
-		},
+		validateFunc: validateLogin,
 	},
 	"inputLogin"
 );
@@ -43,14 +37,7 @@ const inputPassword = new Textfield(
 		type: "password",
 		label: "Пароль",
 		placeholder: "Пароль",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, validatePassword);
-			},
-		},
+		validateFunc: validatePassword,
 	},
 	"inputPassword"
 );
@@ -62,6 +49,8 @@ const loginPage = new LoginPage(
 				e.preventDefault();
 				const target = e.target as HTMLFormElement;
 				const formData = new FormData(target);
+				inputLogin.validate();
+				inputPassword.validate();
 				formData.forEach((value, key) => {
 					console.log(`${key}: ${value}`);
 				});

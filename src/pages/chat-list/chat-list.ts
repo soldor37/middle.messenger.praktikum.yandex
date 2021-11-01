@@ -4,7 +4,6 @@ import chatList from "./chat-list.pug";
 import "./chat-list.scss";
 import Textfield from "../../components/textfield/textfield";
 import renderBlock from "../../utils/renderBlock";
-import { checkValidation } from "../../utils/validation";
 import ChatListItem from "./components/chat-list-item/chat-list-item";
 import ChatListMessage from "./components/chat-list-message/chat-list-message";
 
@@ -23,14 +22,7 @@ const inputMessage = new Textfield(
 		type: "text",
 		label: "",
 		placeholder: "Введите сообщение",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, (v) => (!!v ? "" : "Введите сообщение"));
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, (v) => (!!v ? "" : "Введите сообщение"));
-			},
-		},
+		validateFunc: (v) => (!!v ? "" : "Введите сообщение"),
 	},
 	"inputMessage"
 );
@@ -41,14 +33,7 @@ const inputSearch = new Textfield(
 		type: "text",
 		label: "",
 		placeholder: "Поиск",
-		events: {
-			focusin: (e: Event) => {
-				checkValidation(e, (v) => (!!v ? "" : "Введите имя"));
-			},
-			focusout: (e: Event) => {
-				checkValidation(e, (v) => (!!v ? "" : "Введите имя"));
-			},
-		},
+		validateFunc: (v) => (!!v ? "" : "Введите имя"),
 	},
 	"inputSearch"
 );
