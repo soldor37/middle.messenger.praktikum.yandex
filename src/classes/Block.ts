@@ -1,16 +1,20 @@
-import { TEvents } from '../enitities/Event';
-import { TProps } from '../enitities/Prop';
-import EventBus from './EventBus'
-import { v4 as makeUUID } from 'uuid'
+import { TEvents } from "../enitities/Event";
+import { TProps } from "../enitities/Prop";
+import EventBus from "./EventBus";
+import { v4 as makeUUID } from "uuid";
 
 export default class Block {
-	private _meta: null | { tagName: string; props: TProps; childComponents?: Block[] } = null;
+	private _meta: null | {
+		tagName: string;
+		props: TProps;
+		childComponents?: Block[];
+	} = null;
 
 	private _element: null | HTMLElement = null;
 
-	private _id: string = '';
+	private _id: string = "";
 
-	public name: string = '';
+	public name: string = "";
 
 	props: TProps = {};
 
@@ -22,25 +26,27 @@ export default class Block {
 		INIT: "init",
 		FLOW_CDM: "flow:component-did-mount",
 		FLOW_CDU: "flow:component-did-update",
-		FLOW_RENDER: "flow:render"
+		FLOW_RENDER: "flow:render",
 	};
 
-
-	constructor(tagName: string = "div", props: TProps = {}, name: string, childComponents?: Block[]) {
-
+	constructor(
+		tagName: string = "div",
+		props: TProps = {},
+		name: string,
+		childComponents?: Block[]
+	) {
 		const eventBus = new EventBus();
 
 		this._meta = {
 			tagName,
 			props,
-			childComponents
+			childComponents,
 		};
 		this._id = makeUUID();
 
-		this.name = name
+		this.name = name;
 
-		this.childComponents = childComponents
-
+		this.childComponents = childComponents;
 
 		this.props = this._makePropsProxy({ ...props, __id: this._id });
 
@@ -48,7 +54,6 @@ export default class Block {
 
 		this._registerEvents(eventBus);
 		eventBus.emit(Block.EVENTS.INIT);
-
 	}
 
 	private _registerEvents(eventBus: EventBus) {
@@ -67,7 +72,7 @@ export default class Block {
 
 	init() {
 		this._createResources();
-		this.eventBus.emit(Block.EVENTS.FLOW_CDM)
+		this.eventBus.emit(Block.EVENTS.FLOW_CDM);
 	}
 
 	private _componentDidMount() {
@@ -76,7 +81,7 @@ export default class Block {
 	}
 
 	// Может переопределять пользователь, необязательно трогать
-	componentDidMount() { }
+	componentDidMount() {}
 
 	private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
 		const response = this.componentDidUpdate(oldProps, newProps);
@@ -104,17 +109,18 @@ export default class Block {
 	}
 
 	private _renderBlockWithComponents(block: string) {
-		const fragment = document.createElement('template');
+		const fragment = document.createElement("template");
 		fragment.innerHTML = block;
 		if (this.childComponents) {
-			Object.values(this.childComponents)
-				.forEach((block: Block) => {
-					const el = fragment.content.querySelector(`[data-component="${block.name}"]`);
+			Object.values(this.childComponents).forEach((block: Block) => {
+				const el = fragment.content.querySelector(
+					`[data-component="${block.name}"]`
+				);
 
-					if (el && block.element) {
-						el.replaceWith(block.element);
-					}
-				});
+				if (el && block.element) {
+					el.replaceWith(block.element);
+				}
+			});
 		}
 		return fragment.content;
 	}
@@ -122,19 +128,20 @@ export default class Block {
 	private _render() {
 		const block = this.render();
 
-		this._removeEvents()
+		this._removeEvents();
 
 		if (this._element && block) {
-			const blockWithComponents: DocumentFragment = this._renderBlockWithComponents(block)
-			this._element.innerHTML = '';
-			this._element.appendChild(blockWithComponents)
+			const blockWithComponents: DocumentFragment =
+				this._renderBlockWithComponents(block);
+			this._element.innerHTML = "";
+			this._element.appendChild(blockWithComponents);
 		}
 
 		this._addEvents();
 	}
 
 	// Может переопределять пользователь, необязательно трогать
-	render(): string | void { }
+	render(): string | void {}
 
 	getContent() {
 		return this.element;
@@ -143,7 +150,7 @@ export default class Block {
 	private _addEvents() {
 		const { events = {} } = this.props;
 
-		Object.keys(events).forEach(eventName => {
+		Object.keys(events).forEach((eventName) => {
 			this._element?.addEventListener(eventName, events[eventName]);
 		});
 	}
@@ -151,42 +158,40 @@ export default class Block {
 	private _removeEvents() {
 		const { events = {} } = this.props;
 
-		Object.keys(events).forEach(eventName => {
+		Object.keys(events).forEach((eventName) => {
 			this._element?.removeEventListener(eventName, events[eventName]);
 		});
 	}
 	private _makePropsProxy(props: TProps) {
-
 		const proxyProps = new Proxy(props, {
 			get: (target, prop: string) => {
-				const value = target[prop]
-				return typeof value === "function" ? value.bind(target) : value
+				const value = target[prop];
+				return typeof value === "function" ? value.bind(target) : value;
 			},
 			set: (target, prop: string, value) => {
-				const oldProps = target[prop]
-				target[prop] = value
+				const oldProps = target[prop];
+				target[prop] = value;
 				this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, value);
-				return true
+				return true;
 			},
 			deleteProperty: (target, prop: string) => {
-				console.log('trying to delete property:', target, prop)
-				throw new Error('нет доступа');
-			}
-		})
-		return proxyProps
+				console.log("trying to delete property:", target, prop);
+				throw new Error("нет доступа");
+			},
+		});
+		return proxyProps;
 	}
 
 	private _createDocumentElement(tagName: string) {
 		const element = document.createElement(tagName);
-		element.setAttribute('data-id', this._id);
-		return element
+		element.setAttribute("data-id", this._id);
+		return element;
 	}
 
 	show() {
 		if (this.getContent() !== null) {
 			this.getContent()!.style.display = "block";
 		}
-
 	}
 
 	hide() {

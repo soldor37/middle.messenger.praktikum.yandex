@@ -1,20 +1,20 @@
 {
-    "compilerOptions": {
-    "outDir": "dist",
-    "target": "es2017",
-    "baseUrl": ".",
-    "paths": {
-      "~": ["./src/*"]
-    },
-    "declaration": true,
-    "module": "commonjs",
-    "strictNullChecks": true,
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,    
-   },
-   "esModuleInterop": true,
-   "allowSyntheticDefaultImports": true,
-   "include": ["src/**/*", "shims.d.ts"]
+  "compilerOptions": {
+  "outDir": "dist",
+  "target": "es2017",
+  "baseUrl": ".",
+  "paths": {
+    "~": ["./src/*"]
+  },
+  "declaration": true,
+  "module": "commonjs",
+  "strictNullChecks": true,
+  "sourceMap": true,
+  "noImplicitAny": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,    
+  },
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true,
+  "include": ["src/**/*", "shims.d.ts"]
 } 

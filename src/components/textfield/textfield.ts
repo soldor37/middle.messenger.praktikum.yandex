@@ -1,15 +1,15 @@
-import { TProps } from '../../enitities/Prop';
-import Block from '../../classes/Block';
-import compileTextfield from './textfield.pug';
-import './textfield.scss'
+import { TProps } from "../../enitities/Prop";
+import Block from "../../classes/Block";
+import compileTextfield from "./textfield.pug";
+import "./textfield.scss";
 
 export default class Textfield extends Block {
-    constructor(props: TProps, name: string) {
-        super('div', props, name)
-    }
-    render() {
-        return compileTextfield({ ...this.props })
-    }
+	constructor(props: TProps, name: string) {
+		super("div", props, name);
+	}
+	render() {
+		return compileTextfield({ ...this.props });
+	}
 }
 // function render(query: string, block: Textfield) {
 //     const root = document.querySelector(query);
@@ -37,7 +37,7 @@ export default class Textfield extends Block {
 // app — это class дива в корне DOM
 // render(".app", textfield);
 
-  // Через секунду контент изменится сам, достаточно обновить пропсы
+// Через секунду контент изменится сам, достаточно обновить пропсы
 //   setTimeout(() => {
 //     index.setProps({
 //       text: 'Click me, please',
