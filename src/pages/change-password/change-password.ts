@@ -4,7 +4,9 @@ import Block from "../../classes/Block";
 import changePassword from "./change-password.pug";
 import Textfield from "../../components/textfield/textfield";
 import renderBlock from "../../utils/renderBlock";
-import { validatePassword, checkValidation } from "../../utils/validation";
+import { validatePassword } from "../../utils/validation";
+import Button from "../../components/button/button";
+import FileInput from "../../components/fileInput/fileInput";
 
 class ChangePasswordPage extends Block {
 	constructor(props: TProps, childComponents: Block[]) {
@@ -53,6 +55,33 @@ const inputNewPasswordRepeat = new Textfield(
 	"inputNewPasswordRepeat"
 );
 
+const btnBackToChats = new Button(
+	{
+		type: "button",
+		text: "Назад к чатам",
+		events: {
+			click: () => {
+				window.location.href = "../static/chat-list.html";
+			},
+		},
+	},
+	"btnBackToChats"
+);
+
+const btnSubmit = new Button(
+	{
+		type: "submit",
+		text: "Сохранить",
+	},
+	"btnSubmit"
+);
+
+const avatarInput = new FileInput({
+	events:{
+		change: () => console.log('change') 
+	}
+},'avatarInput');
+
 const changePasswordPage = new ChangePasswordPage(
 	{
 		events: {
@@ -60,16 +89,23 @@ const changePasswordPage = new ChangePasswordPage(
 				e.preventDefault();
 				const target = e.target as HTMLFormElement;
 				const formData = new FormData(target);
-				inputNewPassword.validate()
-				inputNewPasswordRepeat.validate()
-				inputOldPassword.validate()
+				inputNewPassword.validate();
+				inputNewPasswordRepeat.validate();
+				inputOldPassword.validate();
 				formData.forEach((value, key) => {
 					console.log(`${key}: ${value}`);
 				});
 			},
 		},
 	},
-	[inputNewPassword, inputNewPasswordRepeat, inputOldPassword]
+	[
+		inputNewPassword,
+		inputNewPasswordRepeat,
+		inputOldPassword,
+		btnBackToChats,
+		btnSubmit,
+		avatarInput
+	]
 );
 
 // app — это class дива в корне DOM

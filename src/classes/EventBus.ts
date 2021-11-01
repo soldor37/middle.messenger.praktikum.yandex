@@ -29,13 +29,3 @@ export default class EventBus {
 		this.listeners[event].forEach((listener) => listener(...args));
 	}
 }
-
-//   const eventBus = new EventBus();
-
-//   eventBus.on('common:event-1', handlerEvent1);
-//   eventBus.on('common:event-1', handlerEvent2);
-
-//   eventBus.emit('common:event-1', 42, 10);
-//   eventBus.off('common:event-1', handlerEvent2);
-
-//   eventBus.emit('common:event-1', 84, 20);

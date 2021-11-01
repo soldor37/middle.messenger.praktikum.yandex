@@ -6,11 +6,12 @@ import Textfield from "../../components/textfield/textfield";
 import renderBlock from "../../utils/renderBlock";
 import {
 	validateLogin,
-	checkValidation,
 	validateEmail,
 	validateName,
 	validatePhone,
 } from "../../utils/validation";
+import Button from "../../components/button/button";
+import FileInput from "../../components/fileInput/fileInput";
 
 class ProfilePage extends Block {
 	constructor(props: TProps, childComponents: Block[]) {
@@ -87,6 +88,23 @@ const inputPhone = new Textfield(
 	"inputPhone"
 );
 
+const btnBackToChats = new Button(
+	{
+		type: "button",
+		text: "Назад к чатам",
+		events: {
+			click: () => {
+				window.location.href = "../static/chat-list.html";
+			},
+		},
+	},
+	"btnBackToChats"
+);
+const avatarInput = new FileInput({
+	events:{
+		change: () => console.log('change') 
+	}
+},'avatarInput');
 const profilePage = new ProfilePage(
 	{
 		events: {
@@ -113,6 +131,8 @@ const profilePage = new ProfilePage(
 		inputLogin,
 		inputPhone,
 		inputSecondName,
+		btnBackToChats,
+		avatarInput
 	]
 );
 

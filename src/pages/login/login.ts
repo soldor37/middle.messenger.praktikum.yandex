@@ -4,12 +4,8 @@ import login from "./login.pug";
 import "./login.scss";
 import Textfield from "../../components/textfield/textfield";
 import renderBlock from "../../utils/renderBlock";
-import {
-	validatePassword,
-	validateLogin,
-	checkValidation,
-	checkValidationForEvent,
-} from "../../utils/validation";
+import { validatePassword, validateLogin } from "../../utils/validation";
+import Button from "../../components/button/button";
 
 class LoginPage extends Block {
 	constructor(props: TProps, childComponents: Block[]) {
@@ -42,6 +38,11 @@ const inputPassword = new Textfield(
 	"inputPassword"
 );
 
+const buttonSubmit = new Button({
+	type: "submit",
+	text: "Войти",
+}, 'buttonSubmit');
+
 const loginPage = new LoginPage(
 	{
 		events: {
@@ -57,7 +58,7 @@ const loginPage = new LoginPage(
 			},
 		},
 	},
-	[inputLogin, inputPassword]
+	[inputLogin, inputPassword, buttonSubmit]
 );
 
 // app — это class дива в корне DOM

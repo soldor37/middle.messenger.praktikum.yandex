@@ -7,12 +7,11 @@ import renderBlock from "../../utils/renderBlock";
 import {
 	validatePassword,
 	validateLogin,
-	checkValidation,
 	validateEmail,
 	validateName,
 	validatePhone,
-	checkValidationForEvent,
 } from "../../utils/validation";
+import Button from "../../components/button/button";
 
 class RegistrationPage extends Block {
 	constructor(props: TProps, childComponents: Block[]) {
@@ -100,6 +99,11 @@ const inputPasswordRepeat = new Textfield(
 	"inputPasswordRepeat"
 );
 
+const buttonSubmit = new Button({
+	type: "submit",
+	text: "Зарегистрироваться",
+}, 'buttonSubmit');
+
 const registrationPage = new RegistrationPage(
 	{
 		events: {
@@ -128,6 +132,7 @@ const registrationPage = new RegistrationPage(
 		inputPasswordRepeat,
 		inputPhone,
 		inputSecondName,
+		buttonSubmit
 	]
 );
 

@@ -1,5 +1,3 @@
-include ../../components/button/button.pug
-
 .content
     form().registration-card.elevation.bordered 
         .registration-card__title.text-title.mb-10 Регистрация
@@ -18,7 +16,7 @@ include ../../components/button/button.pug
         .registration-card__input.mb-4
             div(data-component="inputPasswordRepeat")
         .registration-card__auth-btn.mb-4
-            +button('Зарегистрироваться')(type='submit')
+            div(data-component="buttonSubmit")
         a.registration-card__no-account.link(href="../static/login.html") Вход
 
 
