@@ -12,9 +12,18 @@
         box-sizing: border-box;
         &:focus-visible{
             outline: 2px solid var(--color-primary);
-        }   
+        }  
+        &.invalid{
+            outline: 2px solid var(--color-error);
+        } 
     }
-
+    &__error-message{
+        font-size: 10px;
+        color: var(--color-error);
+        padding-top: 4px;
+        height: 10px;
+        white-space: normal;
+    }
     input{
         font-size: 16px;
     }

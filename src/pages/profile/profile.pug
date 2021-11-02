@@ -1,53 +1,17 @@
-extends ../../layout/page-template/page-template.pug
-include ../../components/button/button.pug
-include ../../components/textfield/textfield.pug
-
-block variables 
-    - var title = 'Профиль'
-block scripts 
-    script(src="profile.js")
-block content 
-    .profile
-        .profile__back-btn
-            +button('Назад к чатам')(onclick="window.location.href='../chat-list/chat-list.html'") 
-        .profile__avatar.mb-2 
-            input(type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;")
-        .profile__name.mb-4 Иван
-        .profile__info.mb-4 
-            +textfield('Почта', '', 'email')(value='pochta@yandex.ru')
-            +textfield('Логин', '', 'login')(value='ivanivanov')
-            +textfield('Имя', '', 'first_name')(value='Иван')
-            +textfield('Фамилия', '', 'second_name')(value='Иванов')
-            +textfield('Имя в чате', '', 'display_name')(value='Иван123')
-            +textfield('Телефон', '', 'phone')(value='+7 (900) 999 99 99')
-        .profile__actions 
-            a.link.mb-2 Изменить данные
-            a.link.mb-2(href="../change-password/change-password.pug") Изменить пароль
-            a.link.exit Выйти
-
-
-//- html(lang="en")
-//-     head
-//-         meta(charset="UTF-8")
-//-         meta(http-equiv="X-UA-Compatible", content="IE=edge")
-//-         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-//-         title Profile
-//-     body 
-//-         script(src="profile.js") 
-//-         .profile
-//-             .profile__back-btn
-//-                 +button('Назад к чатам')(onclick="window.location.href='../chat-list/chat-list.html'") 
-//-             .profile__avatar.mb-2 
-//-                 input(type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;")
-//-             .profile__name.mb-4 Иван
-//-             .profile__info.mb-4 
-//-                 +textfield('Почта', '', 'email')(value='pochta@yandex.ru')
-//-                 +textfield('Логин', '', 'login')(value='ivanivanov')
-//-                 +textfield('Имя', '', 'first_name')(value='Иван')
-//-                 +textfield('Фамилия', '', 'second_name')(value='Иванов')
-//-                 +textfield('Имя в чате', '', 'display_name')(value='Иван123')
-//-                 +textfield('Телефон', '', 'phone')(value='+7 (900) 999 99 99')
-//-             .profile__actions 
-//-                 a.link.mb-2 Изменить данные
-//-                 a.link.mb-2(href="../change-password/change-password.pug") Изменить пароль
-//-                 a.link.exit Выйти
+.profile
+    .profile__back-btn
+        div(data-component="btnBackToChats")
+    .profile__avatar.mb-2 
+        div(data-component="avatarInput")
+    .profile__name.mb-4 Иван
+    .profile__info.mb-4 
+        div(data-component="inputEmail")
+        div(data-component="inputLogin")
+        div(data-component="inputFirstName")
+        div(data-component="inputSecondName")
+        div(data-component="inputDisplayName")
+        div(data-component="inputPhone")
+    .profile__actions 
+        a.link.mb-2 Изменить данные
+        a.link.mb-2(href="../static/change-password.html") Изменить пароль
+        a.link.exit Выйти

@@ -1,22 +1,13 @@
-extends ../../layout/page-template/page-template.pug
-include ../../components/button/button.pug
-include ../../components/textfield/textfield.pug
-
-block variables 
-    - var title = 'Вход'
-block scripts 
-    script(src="login.js")
-block content 
-    .content
-        form(action='#' method='method').login-window.elevation.bordered 
-            .login-window__title.text-title.mb-10 Вход
-            .login-window__input.mb-4
-                +textfield('Логин','Логин','login')(type='email')
-            .login-window__input.mb-4
-                +textfield('Пароль','Пароль','password')(type='password')
-            .login-window__auth-btn.mb-4
-                +button('Войти')(type='submit')
-            a.login-window__no-account.link(href="../registration/registration.pug") Нет аккаунта?
+.content
+    form().login-window.elevation.bordered 
+        .login-window__title.text-title.mb-10 Вход
+        .login-window__input.mb-1
+            div(data-component="inputLogin")
+        .login-window__input.mb-4
+            div(data-component="inputPassword")
+        .login-window__auth-btn.mb-4
+            div(data-component="buttonSubmit")
+        a.login-window__no-account.link(href="../static/registration.html") Нет аккаунта?
 
     
     

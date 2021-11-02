@@ -4,6 +4,10 @@
 @import '../../components/button/button.scss';
 @import '../../components/textfield/textfield.scss';
 // -------------
+.app{
+    height: 100vh;
+    max-height: 100%;
+}
 body{
     font-family: 'Source sans pro', sans-serif;
 }

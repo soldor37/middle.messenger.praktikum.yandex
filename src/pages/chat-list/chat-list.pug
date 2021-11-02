@@ -1,37 +1,25 @@
-extends ../../layout/page-template/page-template.pug
-include ../../components/button/button.pug
-include ../../components/textfield/textfield.pug
-include ./components/chat-list-item/chat-list-item.pug
-
-block variables 
-    - var title = 'Чат'
-block scripts 
-    script(src="chat-list.js")
-block content 
-    .content 
-        .chat-list 
-            .chat-list__header 
-                .profile-btn.mb-4 
-                    a(href="../profile/profile.pug") Профиль
-                .search.mb-2
-                    +textfield('Поиск','Поиск','search')
-            .chat-list__list 
-                +chatListItem('Георгий', '', 'Я не знаю', '10:20', 0) 
-                +chatListItem('Вадим', '', 'Random message', '20:10', 4)
-        .selected-chat
-            .selected-chat__header 
-                .user
-                    .user__photo 
-                    .user__name 
-                .menu
-            .selected-chat__chat-area 
-                .messages-onDate 
-                    .messages-onDate__date 
-                    .messages-onDate__messages 
-                        .message.opponent-message
-                        .message.my-message
-            .selected-chat__footer 
-                .pin-btn 
-                .message-input 
-                    +textfield('Сообщение','Сообщение','message')
-                .send-btn
+.chat-list-content 
+    .chat-list 
+        .chat-list__header 
+            .profile-btn.mb-4 
+                a(href="../static/profile.html") Профиль
+            .search.mb-2
+                div(data-component="inputSearch")
+        .chat-list__list 
+            each val in dialogs ? dialogs : ['Нет чатов']  
+                | !{val}
+    .selected-chat
+        .selected-chat__header 
+            .user
+                .user__photo 
+                .user__name 
+            .menu
+        .selected-chat__chat-area 
+            .messages-onDate 
+                each val in messages ? messages : ['Нет сообщений']  
+                    | !{val}
+        .selected-chat__footer 
+            .pin-btn 
+            .message-input 
+                div(data-component="inputMessage")
+            .send-btn
